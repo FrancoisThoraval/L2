@@ -1,0 +1,119 @@
+▒█▀▀▀ ▀█▀ ▒█▀▀█ ▒█░▒█ ▒█▀▀▀ 　 ▒█▀▀█ 　 ▒█▀▀▀█ ▀▀█▀▀ ▒█░▒█ ▒█▀▀▄ ▀█▀ ▒█▀▀▀█ 
+▒█▀▀▀ ▒█░ ▒█░░░ ▒█▀▀█ ▒█▀▀▀ 　 ▒█▄▄▀ 　 ░▀▀▀▄▄ ░▒█░░ ▒█░▒█ ▒█░▒█ ▒█░ ▒█░░▒█ 
+▒█░░░ ▄█▄ ▒█▄▄█ ▒█░▒█ ▒█▄▄▄ 　 ▒█░▒█ 　 ▒█▄▄▄█ ░▒█░░ ░▀▄▄▀ ▒█▄▄▀ ▄█▄ ▒█▄▄▄█ 
+
+
+* install.packages("XXX") --> installe le package XXX
+
+* library("XXX") -->charge la bibliothèque XXX
+
+* Définir un vecteur: X= c(a,b,c,...)
+
+* Définir une fonction:
+	<nomFonction> = function(x){
+		<opérations>
+	}
+
+* windows() --> ouvre une fenêtre pour afficher un graphe par exemple
+
+* curve() --> cree une courbe
+	exemple: curve(P(x), 0, 1, main="droite", lwd=5, col="purple", xlim=xli, ylim=yli)
+		paramètres:
+		- fonction
+		- point de départ
+		- point d'arrivée
+		- Titre (main)
+		- Epaisseur (lwd)
+		- couleur (col)
+		- limite axe X (xlim) avec yli = c(0,2) par ex
+		- limite axe Y (ylim) avec xli = c(0,4) par ex
+		- n= <précision de la courbe> == nbr de tirages
+		- xaxs, yaxs = "i" --> place les axes x et y correctement, ="r" quand non spécifié
+
+* polygon() --> cree un polygone (pour faire l'aire sous la courbe)
+	exemple: polygon(xg,yg,col="gray85", lty=1)
+		parametres:
+		- xg --> coordonées en x ex: c(x1,x1,x2,x2,x1)
+		- yg --> coordonées en y ex: c(0 , 1, 1, 0, 0)
+		- col --> couleur de l'aire
+		- lty --> contour (	0= pas de contours
+							1= contour continue
+							>1 contour haché
+							)
+				lty = c("dashed", "solid"), définit plus précisement le contour qu'on veut
+		
+		- density = c(a,b) --> aire hachée (a: nombre d'hachures
+		  									b: ?
+		  									)
+
+* runif(n) avec n= X --> random uniform, tire n nombres aléatoires entre 0 et 1
+	exemple:
+		n = 100
+		xv = runif(n) #random uniform
+		xv
+
+		Pour acceder à une valeur particulière: xv[2] par ex.
+		pour acceder à une série de valeurs particulières: xv[2:6] par ex.
+		xv2 = xv[xv>0.25 & xv<0.5] --> on met dans xv2 les valeurs de xv comprises entre 0.25 et 0.5
+
+* length(xv2) --> nombre d'élements compris dans le vecteur xv2
+
+* s1 = seq(0,1, by=0.25) --> définit l'intervalle pour étudier un histogramme (de 0 à 1 par 0.25)
+
+* hist() --> cree un histogramme
+	exemple: h1 = hist(xv,breaks = s1,freq=FALSE,col="grey",xaxt="n")
+		paramètres:
+		- xv: les valeurs qui composent l'histogramme
+		- breaks: définit l'intervalle
+		- freq: FALSE = histogramme des densités
+				TRUE  = histogramme des fréquences
+		- col: couleur
+		- xaxt: "n" supprime l'axe des x /yaxt = "n" pour l'axe y /axes=FALSE pour supprimer les axes
+
+* axis() --> cree un axe personnalisé
+	exemple: axis(1, at = seq(0,1, by =0.25))
+		paramètres:
+		- 1 --> axe x /2 pour l'axe y
+		- at: on utilise l'intervalle seq définit plus haut
+
+* Charger dans une variable le contenu d'un fichier: 
+	<variable> = <nomFicher>
+
+* Acceder à une colonne précise:
+	<variableContenantFichier>$<nomColonne> /si on veut que certaines lignes on peut rajouter [a:b]
+
+* summary(<vecteur>):
+	Donne un résumé du vectuer. C'est à dire:
+		Minimum, Maximum, Q1, Q3, Mediane, Moyenne.
+
+* sort(<vecteur>): Trie un vecteur dans l'ordre croissant
+
+* source(<fichier.r>): Permet d'ajouter un fichier .r contenant par exemple une fonction affichant un Boxplot
+	exemple: source("BOXPLOT14.r")
+
+* mean(<vecteur>): fais la moyenne du vecteur
+
+* sd(<vecteur>): calcule l'écart type
+
+* sqrt(): Racine carrée
+
+* par(mfrow=c(2,1)): Cree un graphe sur 2 lignes et 1 colonne
+
+* boxplot(): cree un diagramme à moustache
+	exemple: boxplot(c$price,horizontal = TRUE,col = "red", ylim =li,main="Diagramme oklm")
+		paramètres:
+		- vecteur choisi pour réaliser le diagramme
+		- horizontal: True --> le diagramme sera horizontal
+					  False -> le diagramme sera vertical
+		- col: couleur
+		- ylim: définit la limite du diagramme en y (ex: li= (0,7000) -> va de 0 à 7000)
+		- main: titre
+
+
+
+▒█▀▀▀ ▀█▀ ▒█▀▀█ ▒█░▒█ ▀█▀ ▒█▀▀▀ ▒█▀▀█ 　 ▒█▀▀█ ▒█▀▀▀█ ▀▄▒▄▀ ▒█▀▀█ ▒█░░░ ▒█▀▀▀█ ▀▀█▀▀ ░ █▀▀█ 
+▒█▀▀▀ ▒█░ ▒█░░░ ▒█▀▀█ ▒█░ ▒█▀▀▀ ▒█▄▄▀ 　 ▒█▀▀▄ ▒█░░▒█ ░▒█░░ ▒█▄▄█ ▒█░░░ ▒█░░▒█ ░▒█░░ ▄ █▄▄▀ 
+▒█░░░ ▄█▄ ▒█▄▄█ ▒█░▒█ ▄█▄ ▒█▄▄▄ ▒█░▒█ 　 ▒█▄▄█ ▒█▄▄▄█ ▄▀▒▀▄ ▒█░░░ ▒█▄▄█ ▒█▄▄▄█ ░▒█░░ █ ▀░▀▀ 
+
+
+* BP(<vecteur>): indique les valeurs de h1, h2, Q1, Q3, Mediane, MoustacheBas, MoustacheHaut
