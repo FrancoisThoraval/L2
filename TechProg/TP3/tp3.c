@@ -16,8 +16,8 @@ typedef struct {
   char state; //'n' nominal, 'a' alerte, 'd' detresse
 }Avion;
 
-int *Saisie(int tab[]){
-  int nb, nbE=0;
+void Saisie(int tab[]){
+  int nb;
   int i;
 
   printf("Entrez 5 valeurs dans le tableau: \n" );
@@ -25,11 +25,7 @@ int *Saisie(int tab[]){
     printf("valeur n° %d: ", i );
     scanf("%d", &nb);
     tab[i]=nb;
-    nbE++;
   }
-
-  tab[i+1]=nbE;
-  return tab;
 }
 
 void Affiche(int tab[], int nbE) {
@@ -81,9 +77,12 @@ void Trier(int tab[],int nbE){
   Affiche(tab,nbE);
 }
 
-void Exo7(int tab[],int nbE) {
+void Exo7() {
   int Choix;
+  int tab[tailleMax];
+  int nbE=5;
 
+  do{
   printf("\n\n===========MENU===========\n\n");
   printf("1) Saisir nouveau tableau\n");
   printf("2) Afficher le tableau\n");
@@ -93,24 +92,20 @@ void Exo7(int tab[],int nbE) {
   printf("==========================\n\n");
   printf("Choix: ");
   scanf("%d",&Choix);
+    switch (Choix) {
+      case 1: Saisie(tab);
+        break;
+      case 2: Affiche(tab,nbE);
+        break;
+      case 3: AfficherElem(tab);
+        break;
+      case 4: RechercherElem(tab,nbE);
+        break;
+      case 5: Trier(tab,nbE);
+        break;
+    }
+  }while (Choix!=6);
 
-  switch (Choix) {
-    case 1: Saisie(tab);
-            Exo7(tab,nbE);
-      break;
-    case 2: Affiche(tab,nbE);
-            Exo7(tab,nbE);
-      break;
-    case 3: AfficherElem(tab);
-            Exo7(tab,nbE);
-      break;
-    case 4: RechercherElem(tab,nbE);
-            Exo7(tab,nbE);
-      break;
-    case 5: Trier(tab,nbE);
-            Exo7(tab,nbE);
-      break;
-  }
 }
 
 // Exo 6 ----------------------------------
@@ -271,14 +266,13 @@ void Exo1() {
 }
 
 int main() {
-  int tab[tailleMax];
-  int nbE=0;
+
   // Exo1();
   // Exo2();
   // Exo3();
   // Exo4();
   // Exo5();
   // Exo6 en commentaires
-  Exo7(tab,nbE);
+  Exo7();
   return 0;
 }
