@@ -27,6 +27,7 @@ int *Saisie(int tab[]){
     tab[i]=nb;
     nbE++;
   }
+
   tab[i+1]=nbE;
   return tab;
 }
