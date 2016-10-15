@@ -1,0 +1,66 @@
+<!-- TODO: Mettre newClock dans le js -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Un bô réveil</title>
+  </head>
+  <body>
+    <div class="horloge container-fluid">
+      <h1 id="horlogeDOM">Loading...</h1>
+    </div>
+    <div id="Settings">
+
+    </div>
+      <form>
+        <div class="form-inline container-fluid">
+          <button id="bPlus" type="button" class="btn btn-primary" name="addClock">+</button>
+        </div>
+      </form>
+    </div>
+
+    <!--  Alert Box-->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="AlertBox">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Alarm</h4>
+          </div>
+          <div class="modal-body">
+            <p>Message: <strong>Time to wake up !</strong></p>
+            <hr />
+            <p><strong id="msgAlert">No description but you should wake up !</strong>&hellip;</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="stopButton" class="btn btn-primary" data-dismiss="modal">I can't handle it anymore</button>
+            <button type="button" id="fiveButton" class="btn btn-primary" data-dismiss="modal">+ 5minutes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <audio id="johnCena" preload="auto" src="assets/johnCena.mp3" type="audio/mp3">
+       Your browser does not support the <code>audio</code> element.
+    </audio>
+    <audio id="darudeSandstorm" preload="auto" src="assets/darudeSandstorm.mp3" type="audio/mp3">
+       Your browser does not support the <code>audio</code> element.
+    </audio>
+    <audio id="tetris" preload="auto" src="assets/tetris.mp3" type="audio/mp3">
+       Your browser does not support the <code>audio</code> element.
+    </audio>
+    <audio id="turnDownForWhat" preload="auto" src="assets/turnDownForWhat.mp3" type="audio/mp3">
+       Your browser does not support the <code>audio</code> element.
+    </audio>
+
+  </body>
+</html>
+<script src="Horloge.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
