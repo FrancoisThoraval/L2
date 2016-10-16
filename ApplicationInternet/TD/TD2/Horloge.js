@@ -55,8 +55,8 @@ function checkClock(){
       if ((hours==userHours) && (minutes==userMinutes) &&(seconds==0)) {
         console.log("C'est l'heure !!!");
         messageShow.innerHTML = getMessage.value;
-        $("#AlertBox").modal("show");
         ringtone.play();
+        $("#AlertBox").modal("show");
       }
     checkClock();
   },1000);
