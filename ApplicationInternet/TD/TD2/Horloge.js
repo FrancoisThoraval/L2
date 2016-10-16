@@ -4,7 +4,7 @@ var fiveBut = document.getElementById("fiveButton");
 var clockDiv = document.getElementById("horlogeDOM");
 var settings=document.getElementById("Settings");
 var nbAlarms=0;
-
+var ringtoneGlobal;
 
 
 
@@ -24,15 +24,13 @@ function Clock() {
 }
 
 function checkClock(id){
-  var checkBox=document.getElementById(id);
-  console.log("checkBox: "+ checkBox.id);
+  var checkBox = document.getElementById(id);
   var userHours = checkBox.nextSibling.value;
   var userMinutes = checkBox.nextSibling.nextSibling.value;
   var getMessage =document.getElementById("message");
   var messageShow=document.getElementById("msgAlert");
   var ringtone;
   console.log("messagemodal: " + messageShow.innerHTML);
-
   if (checkBox.checked) {
     var audioHandler=document.getElementById("select").value;
     audioHandler = audioHandler.replace(/\s+/g, '');
@@ -47,7 +45,7 @@ function checkClock(id){
       case "turnDownForWhat": ringtone=document.getElementById("turnDownForWhat");
         break;
     }
-
+    ringtoneGlobal=ringtone;
     console.log("Alarm on");
     setTimeout(function(){
       var date=new Date();
@@ -70,7 +68,7 @@ function checkClock(id){
 
 function addClock(){
   console.log("A que coucou");
-  // creation div qui contient le tout
+  // Creation div qui contient les options
   var divContent = document.createElement("div");
   divContent.className="form-group";
   settings.appendChild(divContent);
@@ -80,14 +78,14 @@ function addClock(){
   form.className="form-inline";
   divContent.appendChild(form);
 
-  // creation checkBox
+  // Creation checkbox
   var checkBox = document.createElement("input");
   checkBox.type = "checkBox";
   checkBox.id = "Alarm n°"+nbAlarms;
   checkBox.class="form-control";
   divContent.appendChild(checkBox);
 
-  // creation saisie heures
+  // Creation saisie heures
   var hours=document.createElement("input");
   hours.type ="number";
   hours.min= "0";
@@ -95,7 +93,7 @@ function addClock(){
   hours.class="form-control";
   divContent.appendChild(hours);
 
-  // creation saisie minutes
+  // Creation saisie minutes
   var minutes=document.createElement("input");
   minutes.type ="number";
   minutes.min="0";
@@ -103,20 +101,21 @@ function addClock(){
   minutes.class="form-control";
   divContent.appendChild(minutes);
 
-  // creation saisie label
+  // Creation saisie label
   var text=document.createElement("input");
   text.type="text";
   text.id="message";
   text.class="form-control";
   divContent.appendChild(text);
 
-  // choix de musiques
+  // Choix des musiques
   var optionArray = ["john Cena","darude Sandstorm","tetris","turn Down For What"];
 
-  // creation select et options
+  // Creation select des musiques
   var select=document.createElement("select");
   select.id="select";
   divContent.appendChild(select);
+  // Creation des options
   for (var i = 0; i < optionArray.length; i++) {
     var option = document.createElement("option");
     option.value=optionArray[i];
@@ -124,7 +123,7 @@ function addClock(){
     select.appendChild(option);
   }
 
-  // creation bouton suppression
+  // Creation du bouton supprimer
   var deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
   deleteBtn.id= "Alarm n°"+nbAlarms;
@@ -132,34 +131,40 @@ function addClock(){
   deleteBtn.innerHTML="-";
   divContent.appendChild(deleteBtn);
 
-  // lorsque on coche ou decoche une checkBox
+  // Quand on coche/décoche
   checkBox.addEventListener("change",function(){
     checkClock(this.id);
   });
 
-  // lorsque on clique sur le bouton -
+  // Quand on clique sur le bouton supprimer
   deleteBtn.addEventListener("click",function(){
     this.parentNode.parentNode.removeChild(this.parentNode);
     nbAlarms--;
   });
 }
 
-
+// Quand la page a fini de charger
 window.addEventListener("load",function(){
+  // Affichage de l'heure en temps réel
   Clock();
+  // Quand on clique sur ajouter une alarme
   bPlus.addEventListener("click",function(){
     nbAlarms++;
-    addClock(nbAlarms);
+    // Creation d'une alarme
+    addClock();
   });
 });
 
+// Quand on clique sur snooze
 fiveBut.addEventListener("click",function(){
-  ringtone.pause();
+  ringtoneGlobal.pause();
   setTimeout(function () {
     $("#AlertBox").modal("show");
     ringtone.play();
   },1000*60*5);
 });
+
+// Quand on clique sur stop
 stpBut.addEventListener("click",function(){
-  ringtone.pause();
+  ringtoneGlobal.pause();
 });
