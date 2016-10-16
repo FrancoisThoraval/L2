@@ -23,14 +23,16 @@ function Clock() {
   },999);
 }
 
-function checkClock(){
-  var checkBox = document.getElementById("CB");
+function checkClock(id){
+  var checkBox=document.getElementById(id);
+  console.log("checkBox: "+ checkBox.id);
   var userHours = checkBox.nextSibling.value;
   var userMinutes = checkBox.nextSibling.nextSibling.value;
   var getMessage =document.getElementById("message");
   var messageShow=document.getElementById("msgAlert");
   var ringtone;
   console.log("messagemodal: " + messageShow.innerHTML);
+
   if (checkBox.checked) {
     var audioHandler=document.getElementById("select").value;
     audioHandler = audioHandler.replace(/\s+/g, '');
@@ -55,10 +57,10 @@ function checkClock(){
       if ((hours==userHours) && (minutes==userMinutes) &&(seconds==0)) {
         console.log("C'est l'heure !!!");
         messageShow.innerHTML = getMessage.value;
-        $("#AlertBox").modal("show");
         ringtone.play();
+        $("#AlertBox").modal("show");
       }
-    checkClock();
+    checkClock(id);
   },1000);
   }
   else {
@@ -68,21 +70,24 @@ function checkClock(){
 
 function addClock(){
   console.log("A que coucou");
-  // Creation formulaire
+  // creation div qui contient le tout
   var divContent = document.createElement("div");
   divContent.className="form-group";
   settings.appendChild(divContent);
 
+  // Creation formulaire
   var form=document.createElement("form");
   form.className="form-inline";
   divContent.appendChild(form);
 
+  // creation checkBox
   var checkBox = document.createElement("input");
   checkBox.type = "checkBox";
-  checkBox.id = "CB";
+  checkBox.id = "Alarm n°"+nbAlarms;
   checkBox.class="form-control";
   divContent.appendChild(checkBox);
 
+  // creation saisie heures
   var hours=document.createElement("input");
   hours.type ="number";
   hours.min= "0";
@@ -90,6 +95,7 @@ function addClock(){
   hours.class="form-control";
   divContent.appendChild(hours);
 
+  // creation saisie minutes
   var minutes=document.createElement("input");
   minutes.type ="number";
   minutes.min="0";
@@ -97,14 +103,17 @@ function addClock(){
   minutes.class="form-control";
   divContent.appendChild(minutes);
 
+  // creation saisie label
   var text=document.createElement("input");
   text.type="text";
   text.id="message";
   text.class="form-control";
   divContent.appendChild(text);
 
+  // choix de musiques
   var optionArray = ["john Cena","darude Sandstorm","tetris","turn Down For What"];
 
+  // creation select et options
   var select=document.createElement("select");
   select.id="select";
   divContent.appendChild(select);
@@ -115,6 +124,7 @@ function addClock(){
     select.appendChild(option);
   }
 
+  // creation bouton suppression
   var deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
   deleteBtn.id= "Alarm n°"+nbAlarms;
@@ -122,10 +132,12 @@ function addClock(){
   deleteBtn.innerHTML="-";
   divContent.appendChild(deleteBtn);
 
+  // lorsque on coche ou decoche une checkBox
   checkBox.addEventListener("change",function(){
-    checkClock();
+    checkClock(this.id);
   });
 
+  // lorsque on clique sur le bouton -
   deleteBtn.addEventListener("click",function(){
     this.parentNode.parentNode.removeChild(this.parentNode);
     nbAlarms--;
@@ -137,17 +149,17 @@ window.addEventListener("load",function(){
   Clock();
   bPlus.addEventListener("click",function(){
     nbAlarms++;
-    addClock();
+    addClock(nbAlarms);
   });
 });
 
 fiveBut.addEventListener("click",function(){
+  ringtone.pause();
   setTimeout(function () {
-    ringtone.stop();
     $("#AlertBox").modal("show");
     ringtone.play();
   },1000*60*5);
 });
 stpBut.addEventListener("click",function(){
-  ringtone.stop();
+  ringtone.pause();
 });
