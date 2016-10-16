@@ -53,8 +53,7 @@ button{
   background-color: #f1f1f1;
 }
 
-#modal{
-  width: 0%;
+#AlertBox{
   background-image: url(./assets/MyMLGMontage.png);
 }
 
