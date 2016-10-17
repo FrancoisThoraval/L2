@@ -1,20 +1,28 @@
-var bPlus = document.getElementById("bPlus");
-var stpBut = document.getElementById("stopButton");
-var fiveBut = document.getElementById("fiveButton");
-var clockDiv = document.getElementById("horlogeDOM");
-var settings=document.getElementById("Settings");
+var bPlus,stpBut,fiveBut,clockDiv,settings;
 var nbAlarms=0;
 var ringtoneGlobal;
+
+bPlus = document.getElementById("bPlus");
+stpBut = document.getElementById("stopButton");
+fiveBut = document.getElementById("fiveButton");
+clockDiv = document.getElementById("horlogeDOM");
+settings=document.getElementById("Settings");
+nbAlarms=0;
+ringtoneGlobal;
 
 
 
 function Clock() {
+  var date,hours,minutes,seconds;
+
   setTimeout(function(){
-    var date=new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
+    date=new Date();
+    hours = date.getHours();
+    minutes = date.getMinutes();
+    seconds = date.getSeconds();
     // var milliseconds = date.getMilliseconds();
+
+    // Affichage en double digits
     hours = ("0" + hours).slice(-2);
     minutes=("0" + minutes).slice(-2);
     seconds = ("0" + seconds).slice(-2);
@@ -24,15 +32,17 @@ function Clock() {
 }
 
 function checkClock(id){
-  var checkBox = document.getElementById(id);
-  var userHours = checkBox.nextSibling.value;
-  var userMinutes = checkBox.nextSibling.nextSibling.value;
-  var getMessage =document.getElementById("message");
-  var messageShow=document.getElementById("msgAlert");
-  var ringtone;
+  var checkBox, userHours, userMinutes, getMessage, messageShow, ringtone,audioHandler;
+  var date,hours,minutes,seconds;
+  checkBox = document.getElementById(id);
+  userHours = checkBox.nextSibling.value;
+  userMinutes = checkBox.nextSibling.nextSibling.value;
+  getMessage =document.getElementById("message");
+  messageShow=document.getElementById("msgAlert");
+  ringtone;
   console.log("messagemodal: " + messageShow.innerHTML);
   if (checkBox.checked) {
-    var audioHandler=document.getElementById("select").value;
+    audioHandler=document.getElementById("select").value;
     audioHandler = audioHandler.replace(/\s+/g, '');
     console.log("music choice: "+audioHandler);
     switch (audioHandler) {
@@ -48,10 +58,10 @@ function checkClock(id){
     ringtoneGlobal=ringtone;
     console.log("Alarm on");
     setTimeout(function(){
-      var date=new Date();
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var seconds = date.getSeconds();
+      date=new Date();
+      hours = date.getHours();
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
       if ((hours==userHours) && (minutes==userMinutes) &&(seconds==0)) {
         console.log("C'est l'heure !!!");
         messageShow.innerHTML = getMessage.value;
@@ -67,26 +77,27 @@ function checkClock(id){
 }
 
 function addClock(){
+  var divContent, form, checkBox, hours,minutes,text,optionArray,select,option,deleteBtn;
   console.log("A que coucou");
   // Creation div qui contient les options
-  var divContent = document.createElement("div");
+  divContent = document.createElement("div");
   divContent.className="form-group";
   settings.appendChild(divContent);
 
   // Creation formulaire
-  var form=document.createElement("form");
+  form=document.createElement("form");
   form.className="form-inline";
   divContent.appendChild(form);
 
   // Creation checkbox
-  var checkBox = document.createElement("input");
+  checkBox = document.createElement("input");
   checkBox.type = "checkBox";
   checkBox.id = "Alarm n°"+nbAlarms;
   checkBox.class="form-control";
   divContent.appendChild(checkBox);
 
   // Creation saisie heures
-  var hours=document.createElement("input");
+  hours=document.createElement("input");
   hours.type ="number";
   hours.min= "0";
   hours.max="23";
@@ -94,7 +105,7 @@ function addClock(){
   divContent.appendChild(hours);
 
   // Creation saisie minutes
-  var minutes=document.createElement("input");
+  minutes=document.createElement("input");
   minutes.type ="number";
   minutes.min="0";
   minutes.max="59";
@@ -102,29 +113,29 @@ function addClock(){
   divContent.appendChild(minutes);
 
   // Creation saisie label
-  var text=document.createElement("input");
+  text=document.createElement("input");
   text.type="text";
   text.id="message";
   text.class="form-control";
   divContent.appendChild(text);
 
   // Choix des musiques
-  var optionArray = ["john Cena","darude Sandstorm","tetris","turn Down For What"];
+  optionArray = ["john Cena","darude Sandstorm","tetris","turn Down For What"];
 
   // Creation select des musiques
-  var select=document.createElement("select");
+  select=document.createElement("select");
   select.id="select";
   divContent.appendChild(select);
   // Creation des options
   for (var i = 0; i < optionArray.length; i++) {
-    var option = document.createElement("option");
+    option = document.createElement("option");
     option.value=optionArray[i];
     option.text=optionArray[i];
     select.appendChild(option);
   }
 
   // Creation du bouton supprimer
-  var deleteBtn = document.createElement("button");
+  deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
   deleteBtn.id= "Alarm n°"+nbAlarms;
   deleteBtn.className = "btn btn-danger";
