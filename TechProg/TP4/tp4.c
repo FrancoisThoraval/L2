@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define tailleMax 50
+#define tailleMax 1
 
 void Inverser(int *nb1, int *nb2) {
   *nb1+=*nb2;
@@ -16,25 +17,58 @@ void AfficheTab(int tab[tailleMax],int nbE){
   printf("\n");
 }
 
-void Exo2() {
-  int tab[tailleMax];
-  int nb,i=0,nbE=0;
-  char Choix='o';
-  do {
-    printf("Entrez une valeur: \n");
-    scanf("%d",&nb);
-    tab[i]=nb;
-    i++;
-    nbE++;
-    printf("Continuer ? (o/n) \n");
-    scanf("%c*c",&Choix);
+// Permet de vider le buffer
+void clean_stdin(void)
+{
+    int c;
 
-    // Debug
-    AfficheTab(tab,nbE);
-    printf("nbE: %d\n i: %d\n",nbE,i);
-    
-  } while((Choix != 'n')&&(i<tailleMax));
+    do {
+        c = getchar();
+    } while (c != '\n' && c != EOF);
+}
+
+void TriBulle(int *tab, int nbE){
+  int desordre = 0;
+  int *ptr=&tab[0];
+  // printf("ptr: %d ptr+1: %d",*ptr,*(ptr+1));
+  while (desordre==0) {
+    desordre =1;
+    for (int i = 0; i < nbE; i++) {
+      if (*(ptr+i)>*(ptr+i+1)) {
+        Inverser((ptr+i),(ptr+i+1));
+        desordre=0;
+      }
+    }
+  }
+}
+
+void Saisie() {
+
+}
+
+void Exo2() {
+  int taille;
+  int *tab=NULL;
+  int nb,i=0,nbE=0;
+
+  printf("Combien d'elements souhaité: \n");
+  scanf("%d",&taille);
+  tab=malloc(taille * sizeof(int));
+
+  if (tab==NULL) {
+    printf("Erreur lors de l'allocation mémoire du tableau\n");
+  }
+  for (i = 0; i < taille; i++) {
+    printf("valeur n°%d: \n",i+1);
+    scanf("%d*c",&nb);
+    clean_stdin(); //On vide le buffer apres chaque saisie sinon ca boucle deux fois ...
+    tab[i]=nb;
+    nbE++;
+  }
   AfficheTab(tab,nbE);
+  TriBulle(tab,nbE);
+  AfficheTab(tab,nbE);
+  free(tab);
 }
 
 void Exo1() {
