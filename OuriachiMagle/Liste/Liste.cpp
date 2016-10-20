@@ -5,7 +5,7 @@ using namespace std;
 
 Liste::Liste(){
 	_nbE =0;
-};
+}
 
 bool Liste::estVide(){
 	return (_nbE==0);

@@ -1,4 +1,4 @@
-all : Liste.o main.cpp
+all : Liste.o main.o
 	g++ Liste.o  main.o -o Liste
 
 main.o: main.cpp
