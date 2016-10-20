@@ -1,0 +1,39 @@
+library  LibraryListeRecursive
+%%****************************************************
+%%        TYPE ABSTRAIT DES LISTES GENERIQUES
+%%   Objet: Specification Algébrique en CASL
+%%   Prouvée par: HETS(Isabelle)
+%%   Application: manipulation des listes recursives 
+%%   			Date création le 21/11/2005
+%%   			Auteur: K. OURIACHI, Professeur des universités
+%%   			UNIVERSITE de PAU/PAYS de l'ADOUR
+%%     
+%%****************************************************
+%% liste des importations (downloading)
+from Basic/Numbers get Nat,Int, Rat
+%%***************************************************
+%% spécification minimale
+spec   LISTE0[sort Elem] =
+generated type   Liste[Elem] ::= listeVide| cons(Elem; Liste[Elem]) 
+end
+
+%% spécification enrichie
+spec  LISTE [sort Elem] given Int =
+            LISTE0[sort Elem]
+then
+	pred
+	estVide: Liste[Elem];
+        ops
+%% fin n’est pas un générateur
+      fin:  Liste[Elem] -> ? Liste[Elem];  
+      tete: Liste[Elem] ->? Elem   
+
+forall L1:Liste[Elem]; e1:Elem
+    . def tete(L1)   <=>   not estVide(L1)  
+    . def fin (L1)   <=>   not estVide(L1)  
+    . estVide(listeVide)
+    . not estVide(cons(e1,L1))   
+    . tete(cons(e1,L1)) = e1
+%% l’opération fin définie à partir des opérations listeVide et cons 
+    . fin(cons(e1,L1))= listeVide when estVide(L1) else cons(tete(L1),fin(L1))
+end
