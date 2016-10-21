@@ -10,9 +10,14 @@ class Liste{
 	public:
 		Liste();
 		bool estVide();
-		int fin(int L[tailleListe]);  //renvoie l'element en fin de liste
-		int Tete(int L[tailleListe]); //renvoie l'element en tete de liste
-		void inserer(Liste _L, int element, int pos);
+		int fin(Liste _L);  //renvoie l'element en fin de liste
+		int tete(Liste _L); //renvoie l'element en tete de liste
+		void creer(Liste _L, int element, int pos);
+		void afficher(Liste _L);
+		void errorHandler(int i);
+		int acceder(Liste L, int pos);
+		Liste ajoutElt(Liste L, int pos, int nb);
+		Liste supprElt(Liste L, int pos);
 };
 #endif
 //François Thoraval & Mael Rabasa
