@@ -32,16 +32,31 @@ function Clock() {
 }
 
 function checkClock(id){
-  var checkBox, userHours, userMinutes, getMessage, messageShow, ringtone,audioHandler;
+  var checkBox, userHours, userMinutes, getMessage, messageShow, ringtone, audioHandler, pText;
   var date,hours,minutes,seconds;
+
   checkBox = document.getElementById(id);
+  pText = checkBox.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
+  console.log("test: "+ checkBox.id);
+  console.log("test 2: "+ pText.id);
   userHours = checkBox.nextSibling.value;
   userMinutes = checkBox.nextSibling.nextSibling.value;
   getMessage =document.getElementById("message");
   messageShow=document.getElementById("msgAlert");
-  ringtone;
   console.log("messagemodal: " + messageShow.innerHTML);
   if (checkBox.checked) {
+    if ((userHours>23) || (userHours < 0)) {
+      pText.innerHTML = "Heures incorrectes";
+      pText.style= "color: red";
+    }else{
+      if ((userMinutes>59) || (userMinutes < 0)) {
+        pText.innerHTML = "Minutes incorrectes";
+        pText.style= "color: red";
+      }else {
+        pText.innerHTML = "Horloge Active";
+        pText.style = "color: green";
+      }
+    }
     audioHandler=document.getElementById("select").value;
     audioHandler = audioHandler.replace(/\s+/g, '');
     console.log("music choice: "+audioHandler);
@@ -57,6 +72,7 @@ function checkClock(id){
     }
     ringtoneGlobal=ringtone;
     console.log("Alarm on");
+
     setTimeout(function(){
       date=new Date();
       hours = date.getHours();
@@ -73,6 +89,8 @@ function checkClock(id){
   }
   else {
     console.log("Alarm off");
+    pText.innerHTML = "Horloge Inactive";
+    pText.style = "color: black";
   }
 }
 
@@ -142,9 +160,16 @@ function addClock(){
   deleteBtn.innerHTML="-";
   divContent.appendChild(deleteBtn);
 
+  // Creation p pour savoir si l'alarme est active ou non
+  pText=document.createElement("p");
+  pText.innerHTML = "Horloge Inactive";
+  divContent.appendChild(pText);
+
   // Quand on coche/décoche
   checkBox.addEventListener("change",function(){
+
     checkClock(this.id);
+
   });
 
   // Quand on clique sur le bouton supprimer
