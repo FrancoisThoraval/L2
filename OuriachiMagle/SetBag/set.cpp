@@ -3,10 +3,6 @@
 #include <stdlib.h>
 using namespace std;
 
-void errorHandler(int errorCode){
-
-}
-
 Set::Set(){
 	_nbE = 0;
 }
@@ -19,12 +15,11 @@ bool Set::appartient(int elem){
 	bool existe=false;
 
 	if (estVide()) {
-		errorHandler(1);
+		cout << "C'est vide !" << endl;
 		exit(1);
 	}
 	else {
 		for (int i = 0; i < _nbE; i++) {
-			cout << "i: "<<i<<endl;
 			if(_set[i]==elem) {
 				cout << "L'element " << elem << " existe en position " << i+1 << "." << endl;
 				existe=true;
@@ -44,8 +39,10 @@ void Set::ajouter(int elem){
 		if (!appartient(elem)) {
 			_set[_nbE-1]=elem;
 			// _nbE++;
-		}
-	}
+		}else
+			_nbE--;
+	}else
+		_nbE--;
 }
 
 void Set::setVide(){
@@ -62,7 +59,7 @@ void Set::enlever(){
 		if (appartient(elem)) {
 			while ((i<_nbE)&&(_set[i]!=elem))
 				i++;
-			for (int j = i; i < _nbE-1; i++) {
+			for (int j = i; j < _nbE-1; j++) {
 				_set[j]=_set[j+1];
 			}
 			_nbE--;

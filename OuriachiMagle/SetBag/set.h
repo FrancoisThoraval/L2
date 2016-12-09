@@ -15,7 +15,7 @@ class Set
 		void ajouter(int elem);
 		void enlever();
 		void setVide();
-		
+
 		//Opération supplémentaire pour simplifier les tests
 		void afficher();
 };
