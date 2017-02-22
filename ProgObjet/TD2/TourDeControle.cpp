@@ -16,10 +16,10 @@ void TourDeControle::ajouterTabAvionNormal(string fabricant, string type, long a
   while ((i<NBAVIONS)&&(_listeDavion[i].getFabricant() != "")) {
     i++;
   }
-  _listeDavion[i].setFabricant(fabricant);
-  _listeDavion[i].setType(type);
-  _listeDavion[i].setAltitude(altitude);
-  _listeDavion[i].setCap(cap);
+  this->_listeDavion[i].setFabricant(fabricant);
+  this->_listeDavion[i].setType(type);
+  this->_listeDavion[i].setAltitude(altitude);
+  this->_listeDavion[i].setCap(cap);
   this->_nbAvionsListes++;
 }
 
