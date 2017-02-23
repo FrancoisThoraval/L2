@@ -1,13 +1,24 @@
 #ifndef actionnaire_hpp
 #define actionnaire_hpp
 
-class Actionnaire {
+#include <string>
+#include "../TD1/Personne.hpp"
+
+class Actionnaire: public Personne {
 private:
-  /* data */
+  int _id;
+  std::string _metier;
 
 public:
-  Actionnaire ();
+  Actionnaire();
+  Actionnaire (int , std::string);
   ~Actionnaire ();
+
+  void ordonner();
+  void setMetier(std::string);
+  void setID(int);
+  int getID()const;
+  std::string getMetier()const;
 };
 
 #endif

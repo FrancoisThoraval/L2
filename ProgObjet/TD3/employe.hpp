@@ -16,8 +16,12 @@ public:
 
   void setMetier(std::string);
   void setID(int);
-  std::string getMetier();
-  int getID();
+  std::string getMetier()const;
+  int getID()const;
+  void travailler();
+
+  bool operator==(const Employe&);
+  int operator-(const Employe&);
 };
 
 #endif

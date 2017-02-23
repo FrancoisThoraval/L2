@@ -1,7 +1,10 @@
 #ifndef entreprise_hpp
 #define entreprise_hpp
 
-class Entreprise {
+#include "./actionnaire.hpp"
+#include "./employe.hpp"
+
+class Entreprise: public Actionnaire, public Employe {
 private:
   /* data */
 

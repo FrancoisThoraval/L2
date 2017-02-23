@@ -3,22 +3,39 @@
 
 using namespace std;
 
-Ensemble::Ensemble(){
+
+template <class T>
+Ensemble<T>::Ensemble(){
+  this->liste.clear();
+}
+
+template <class T>
+Ensemble<T>::~Ensemble(){
+  this->liste.clear();
+}
+
+template <class T>
+void Ensemble<T>::appartient(){
 
 }
 
-Ensemble::~Ensemble(){
+template <class T>
+void Ensemble<T>::card(){
 
 }
 
-void Ensemble::appartient(){
+template <class T>
+void Ensemble<T>::inserer(){
 
 }
 
-void Ensemble::card(){
+template <class T>
+void Ensemble<T>::affiche(){
 
 }
 
-void Ensemble::inserer(){
-
+template <class T>
+void Ensemble<T>::affiche(int i){
+  list<T>::iterator it = liste.begin();
+  liste.advance(it, i);
 }
