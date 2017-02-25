@@ -1,6 +1,7 @@
 #include "HelloWorld.hpp"
 #include "Personne.hpp"
 #include "Voiture.hpp"
+#include "Ensemble.hpp"
 #include <iostream>
 
 
@@ -8,37 +9,56 @@ using namespace std;
 
 
 void exo1(){
-  HelloWorld a;
+        HelloWorld a;
 
-  a.sayHello();
+        a.sayHello();
 }
 
 void exo2(){
-  Personne qqun;
+        Personne qqun;
 
-  qqun.afficher();
-  qqun.raz();
-  qqun.afficher();
+        qqun.afficher();
+        qqun.raz();
+        qqun.afficher();
 }
 
 void exo3(){
-  Voiture tuture;
-  cout << "============ Afficher voiture ============" << endl;
-  tuture.afficherVoiture();
-  cout << "============ Ajout passager ============" << endl;
-  tuture.ajoutPassager();
-  cout << "============ Afficher voiture ============" << endl;
-  tuture.afficherVoiture();
-  cout << "============ Supprimer passager (2) ============" << endl;
-  tuture.supprPassager(2);
-  cout << "============ Afficher voiture ============" << endl;
-  tuture.afficherVoiture();
+        Voiture tuture;
+        cout << "============ Afficher voiture ============" << endl;
+        tuture.afficherVoiture();
+        cout << "============ Ajout passager ============" << endl;
+        tuture.ajoutPassager();
+        cout << "============ Afficher voiture ============" << endl;
+        tuture.afficherVoiture();
+        cout << "============ Supprimer passager (2) ============" << endl;
+        tuture.supprPassager(2);
+        cout << "============ Afficher voiture ============" << endl;
+        tuture.afficherVoiture();
+}
+
+void exo4(){
+        Ensemble<int> ens;
+
+        ens.inserer(10);
+        ens.inserer(11);
+        ens.inserer(12);
+        ens.inserer(13);
+
+        ens.affiche();
+        ens.affiche(3);
+
+        if(ens.appartient(12)){
+          cout << "le douze est présent !" << endl;
+        }
+
+        cout << "nb elem: "<< ens.card() << endl;
+        cout << "destruction par immortal joe" << endl;
 }
 
 int main() {
-  // exo1(); //Faire une classe qui affiche HelloWorld
-  // exo2(); //Faire une classe Personne
-  exo3();
-
-  return 0;
+        // exo1(); //Faire une classe qui affiche HelloWorld
+        // exo2(); //Faire une classe Personne
+        // exo3(); //Classe voiture
+        exo4();
+        return 0;
 }
