@@ -3,11 +3,15 @@
 
 using namespace std;
 
-// T2::~T2(){
-//   cout << "destruction de T2" << endl;
-//   this->afficher();
-// }
-//
-// void T2::afficher(){
-//   cout << "classe T2" << endl;
-// }
+T2::T2(){
+  this->afficher();
+}
+
+T2::~T2(){
+  cout << "On détruit T2" << endl;
+  this-> afficher();
+}
+
+void T2::afficher(){
+  cout << "classe T2" << endl;
+}
