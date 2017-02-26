@@ -3,8 +3,8 @@
 
 using namespace std;
 
-T2::T2(){
-  this->afficher();
+T2::T2() : T1(){
+  
 }
 
 T2::~T2(){
