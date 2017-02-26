@@ -13,7 +13,7 @@ int main() {
   Arbre D;
   Arbre E;
   cout << "premier arbre   -----------------" << endl;
-  cout << A.arbreVide() << endl;
+  cout << "Arbre vide ? "<< A.arbreVide() << endl;
   A.creerNoeud(2);
   B.creerNoeud(10);
   C.creerNoeud(6);
@@ -23,7 +23,7 @@ int main() {
   A.parcoursPrefixe();
 
   cout << "deuxieme arbre   -----------------" << endl;
-  cout << D.arbreVide() << endl;
+  cout << "Arbre vide ? "<< D.arbreVide() << endl;
   D.creerNoeud(60);
   E.creerNoeud(55);
 
@@ -31,7 +31,7 @@ int main() {
   D.parcoursPrefixe();
 
   cout << "foret   -----------------" << endl;
-  cout << "foret vide ?: " << F.foretVide() << endl;
+  cout << "foret vide ? " << F.foretVide() << endl;
 
   F.planter(A);
   F.planter(D);

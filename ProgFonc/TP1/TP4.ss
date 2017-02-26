@@ -1,0 +1,12 @@
+(define (menu)
+    (display "something")
+    (newline)
+    (display "somewhere")
+    (newline)
+    (display "...")
+    (newline)
+
+    (let ((entree (read)))
+    (display entree))
+  )
+(menu)

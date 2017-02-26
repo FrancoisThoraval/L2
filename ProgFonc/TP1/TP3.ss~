@@ -1,0 +1,19 @@
+(define (emballer-100 nbDisc)
+  (display (/ nbDisc 100))
+)
+
+(define (emballer-50 nbDisc)
+  (display (/ nbDisc 50))
+)
+
+(define (emballer-10 nbDisc)
+  (display (/ nbDisc 10))(display "boîte(s) de remplie(s)")
+  (display(remainder (/ nbDisc 10)))
+)
+
+(emballer-10 100)
+(newline)
+(emballer-50 100)
+(newline)
+(emballer-100 100)
+(newline)

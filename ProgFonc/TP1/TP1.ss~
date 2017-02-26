@@ -1,0 +1,10 @@
+(define (carre x)(* x x))
+(define (cube x)(* x x x))
+
+(define (f x y)(+ 
+                  (/ (- x 3) 
+                       (+ (carre y) 1)) 
+                    (/ 1 
+                       (+ (cube x) 3))))
+
+(display (f 10 10))

@@ -1,0 +1,3 @@
+(define (prixttc1 tva ht)(
+  (* tva ht)
+  ))

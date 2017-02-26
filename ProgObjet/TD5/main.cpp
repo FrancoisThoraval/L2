@@ -26,7 +26,7 @@ void exo2(){
 
 int main(int argc, char const *argv[]) {
 
-  // exo1();
+  exo1();
   exo2();
   return 0;
 }
