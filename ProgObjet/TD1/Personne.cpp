@@ -4,7 +4,12 @@
 using namespace std;
 
 Personne::Personne(){
-  this->saisir();
+  // this->saisir();
+}
+
+Personne::Personne(string nom, string prenom){
+  this->setNom(nom);
+  this->setPrenom(prenom);
 }
 
 Personne::~Personne(){
@@ -31,3 +36,5 @@ void Personne::raz(){
 
 string Personne::getNom(){return this->nom;}
 string Personne::getPrenom(){return this->prenom;}
+void Personne::setNom(string nom){this->nom = nom;}
+void Personne::setPrenom(string prenom){this->prenom = prenom;}
