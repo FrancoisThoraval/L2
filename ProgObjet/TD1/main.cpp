@@ -38,13 +38,19 @@ void exo3(){
 
 void exo4(){
         Ensemble<int> ens;
-
+        Ensemble<Personne> pers;
+        Personne p("toto","tata"), p2("titi","tutu");
         ens.inserer(10);
         ens.inserer(11);
         ens.inserer(12);
         ens.inserer(13);
 
+        pers.inserer(p);
+        pers.inserer(p2);
+
         ens.affiche();
+        cout << ens;
+        cout << pers;
         ens.affiche(3);
 
         if(ens.appartient(12)){

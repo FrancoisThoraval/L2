@@ -1,0 +1,22 @@
+(define (change monnaie montant)
+  (let(
+        (usd 1.064)
+        (gpb 0.852)
+        (jpy 120.494)
+        (rub 61.974)
+        (cny 7.319)
+        (inr 71.098)
+      )
+    (cond
+      ((equal? monnaie '$)(display (* usd montant)))
+      ((equal? monnaie '£)(display (* gpb montant)))
+      ((equal? monnaie 'j)(display (* jpy montant)))
+      ((equal? monnaie 'r)(display (* rub montant)))
+      ((equal? monnaie 'c)(display (* cny montant)))
+      ((equal? monnaie 'i)(display (* inr montant)))
+      (else (display "erreur"))
+    )
+  )
+)
+
+(change (read) (read))

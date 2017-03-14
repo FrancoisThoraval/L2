@@ -1,0 +1,35 @@
+;Calculette
+(load "libcalc.ss")
+
+(define (add op1 op2)
+  (if (non_zero? op2)
+    (add (incrementer op1) (decrementer op2))
+    op1
+  )
+)
+
+(define (sub op1 op2)
+  (if (non_zero? op2)
+    (if (sup_egal? op1 op2)
+      (sub (decrementer op1) (decrementer op2))
+    )
+    op1
+  )
+)
+
+(define (mul op1 op2)
+  (if (non_zero? op2)(begin
+    (decrementer op2)
+    (add op1 op1)
+    (display " _ ")
+    (display op1)
+    (display " x ")
+    (display op2)
+    (mul (add op1 op1) (decrementer op2)))
+    op1
+  )
+)
+
+(add 2 3)
+(sub 30 15)
+(mul 5 4)

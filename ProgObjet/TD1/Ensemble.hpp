@@ -7,19 +7,28 @@
 
 template <class T>
 class Ensemble {
-private:
-// std::list<T> liste;
-T *_tab;
-int _nbElt;
-public:
-Ensemble ();
-~Ensemble ();
+  private:
+    // std::list<T> liste;
+    T *_tab;
+  int _nbElt;
+  public:
+    Ensemble ();
+    ~Ensemble ();
 
-void affiche(int);
-void affiche();
-bool appartient(T);
-int card();
-void inserer(T);
+    void affiche(int);
+    void affiche();
+    bool appartient(T);
+    int card();
+    void inserer(T);
+
+    friend std::ostream &operator<<(std::ostream &os,const Ensemble<T> &e){
+        for (int i = 0; i < e._nbElt; i++) {
+                os << e._tab[i] << " ";
+        }
+        os << "\n";
+        return os;
+    }
+
 };
 
 // Ecriture dans le hpp car sinon il faut spécifier des constructeurs particuliers
