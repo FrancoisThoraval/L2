@@ -1,6 +1,5 @@
 ; libcalc.ss
 ; Programmation fonctionnelle TP2 , programmation d'une calculette
-; (c) Eric Gouardères, Mars 2015
 
 
 ; définition des opérateurs de la calculette
